@@ -80,6 +80,7 @@ grant select on future views in schema NEWS.MARTS to role REPORTER;
 -- ---------------------------------------------------------------------------
 -- 4. Service users with key-pair authentication (no passwords)
 --    Generate keys locally, see README, then paste the public key below.
+--    Sessions run in UTC so stored timestamps and freshness checks line up.
 -- ---------------------------------------------------------------------------
 use role useradmin;
 
@@ -87,12 +88,14 @@ create user if not exists SVC_LOADER
     type = service
     default_role = LOADER
     default_warehouse = NEWS_WH
+    timezone = 'UTC'
     rsa_public_key = '<paste loader public key without header/footer>';
 
 create user if not exists SVC_DBT
     type = service
     default_role = TRANSFORMER
     default_warehouse = NEWS_WH
+    timezone = 'UTC'
     rsa_public_key = '<paste dbt public key without header/footer>';
 
 use role securityadmin;

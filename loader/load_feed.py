@@ -137,8 +137,8 @@ def load_snowflake(rows: list[tuple], schema: str) -> None:
         schema=schema,
     )
     try:
+        # The table is created by snowflake/setup.sql. LOADER may only insert.
         cur = con.cursor()
-        cur.execute(DDL.format(schema=schema))
         placeholders = ", ".join(["%s"] * len(COLUMNS))
         cur.executemany(
             f"insert into {schema}.{RAW_TABLE} ({', '.join(COLUMNS)}) values ({placeholders})",
