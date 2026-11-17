@@ -1,0 +1,11 @@
+snapshots:
+  - name: snap_articles
+    description: >
+      Type 2 history of each article's headline and intro. Every scheduled run
+      closes the old row (dbt_valid_to) and opens a new one when either changes.
+    relation: ref('int_articles__latest')
+    config:
+      schema: snapshots
+      unique_key: article_id
+      strategy: check
+      check_cols: [headline, lede_text]

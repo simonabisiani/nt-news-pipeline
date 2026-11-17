@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Synthetic test data: loaded 10 hours after fetch_2 to trigger the collection-gap warning -->
+<rss version="2.0">
+  <channel>
+    <title>Lokalt</title>
+    <link>https://www.nt.se/</link>
+    <description />
+    <item>
+      <guid isPermaLink="false">test0006</guid>
+      <link>https://www.nt.se/nyheter/valdemarsvik/artikel/hamnen-rustas-infor-sommaren/test0006</link>
+      <title>Hamnen rustas inför sommaren</title>
+      <description>&lt;p&gt;Nya bryggor ska vara på plats i maj.&lt;/p&gt;</description>
+      <pubDate>Mon, 16 Nov 2026 10:40:00 +0100</pubDate>
+    </item>
+  </channel>
+</rss>

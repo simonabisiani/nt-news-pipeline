@@ -1,0 +1,23 @@
+# Credentials are read from environment variables. Nothing secret is committed.
+nt_news:
+  target: "{{ env_var('DBT_TARGET', 'dev') }}"
+  outputs:
+    # Local development and CI: a DuckDB file, no cloud account needed
+    dev:
+      type: duckdb
+      path: "{{ env_var('DUCKDB_PATH', 'nt_news.duckdb') }}"
+      schema: main
+      threads: 4
+
+    # Production: Snowflake, key-pair auth as the SVC_DBT service user
+    prod:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT', '') }}"
+      user: "{{ env_var('SNOWFLAKE_DBT_USER', 'SVC_DBT') }}"
+      private_key_path: "{{ env_var('SNOWFLAKE_DBT_PRIVATE_KEY_PATH', '') }}"
+      role: TRANSFORMER
+      warehouse: NEWS_WH
+      database: NEWS
+      schema: STAGING
+      threads: 4
+      query_tag: nt_news_dbt

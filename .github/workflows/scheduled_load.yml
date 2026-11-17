@@ -1,0 +1,53 @@
+# Production run every 2 hours: load the feed into Snowflake, check freshness,
+# then build and test all models. Requires the repository secrets listed in README.
+name: Scheduled load
+
+on:
+  schedule:
+    - cron: "15 */2 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+jobs:
+  load-and-transform:
+    runs-on: ubuntu-latest
+    env:
+      DBT_PROFILES_DIR: .
+      DBT_TARGET: prod
+      RAW_SCHEMA: RAW
+      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+      SNOWFLAKE_LOADER_USER: SVC_LOADER
+      SNOWFLAKE_LOADER_PRIVATE_KEY_PATH: loader_key.p8
+      SNOWFLAKE_DBT_USER: SVC_DBT
+      SNOWFLAKE_DBT_PRIVATE_KEY_PATH: dbt_key.p8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Write private keys
+        run: |
+          echo "${{ secrets.SNOWFLAKE_LOADER_PRIVATE_KEY }}" > loader_key.p8
+          echo "${{ secrets.SNOWFLAKE_DBT_PRIVATE_KEY }}" > dbt_key.p8
+
+      - name: Extract and load
+        run: python loader/load_feed.py --target snowflake
+
+      - name: Source freshness
+        run: dbt source freshness
+
+      - name: dbt build
+        run: dbt build
+
+      - name: Remove keys
+        if: always()
+        run: rm -f loader_key.p8 dbt_key.p8

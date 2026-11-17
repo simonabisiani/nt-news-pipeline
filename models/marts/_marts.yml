@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: fct_articles
+    description: One row per NT article with its latest headline, section, municipality and collection metadata.
+    columns:
+      - name: article_id
+        description: NT's article ID (guid in the feed).
+        data_tests: [unique, not_null]
+      - name: section_key
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_section')
+                field: section_key
+      - name: content_type
+        description: editorial, automated (template-generated) or unmapped.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [editorial, automated, unmapped]
+      - name: minutes_until_collected
+        description: Minutes between publication and first collection. Large values point to missed loader runs.
+      - name: headline_was_changed
+        description: True if the article has had more than one headline in the feed.
+
+  - name: dim_section
+    description: Feed sections, mapped to labels, content type and municipality via the sections seed.
+    columns:
+      - name: section_key
+        data_tests: [unique, not_null]
+      - name: municipality_code
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('ostergotland_municipalities')
+                field: municipality_code
+      - name: is_mapped
+        description: False if the section is missing from seeds/sections.csv.
+
+  - name: mart_daily_output
+    description: Daily article counts per section and municipality, in Swedish local time.
+
+  - name: mart_headline_changes
+    description: Headline history for articles that were re-headlined after publication.
+    columns:
+      - name: version_number
+        data_tests: [not_null]

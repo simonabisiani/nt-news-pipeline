@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Synthetic test data in the same format as https://www.nt.se/rss/lokalt -->
+<rss version="2.0">
+  <channel>
+    <title>Lokalt</title>
+    <link>https://www.nt.se/</link>
+    <description />
+    <item>
+      <guid isPermaLink="false">test0001</guid>
+      <link>https://www.nt.se/nyheter/norrkoping/artikel/ny-cykelbana-planeras-langs-strommen/test0001</link>
+      <title>Ny cykelbana planeras längs Strömmen</title>
+      <description>&lt;p&gt;Kommunen vill bygga en ny cykelbana&amp;nbsp;längs Motala ström.&lt;/p&gt;</description>
+      <pubDate>Mon, 16 Nov 2026 08:30:00 +0100</pubDate>
+    </item>
+    <item>
+      <guid isPermaLink="false">test0002</guid>
+      <link>https://www.nt.se/nyheter/finspang/artikel/skolan-far-ny-idrottshall/test0002</link>
+      <title>Skolan får ny idrottshall</title>
+      <description>&lt;p&gt;Bygget beräknas vara klart nästa höst.&lt;/p&gt;</description>
+      <pubDate>Mon, 16 Nov 2026 07:15:00 +0100</pubDate>
+    </item>
+    <item>
+      <guid isPermaLink="false">test0003</guid>
+      <link>https://www.nt.se/naringsliv/nyetableringar/artikel/nytt-bolag-startar-i-soderkoping/test0003</link>
+      <title>Nytt bolag startar i Söderköping</title>
+      <description>Exempelbolaget AB startades 15 november 2026.</description>
+      <pubDate>Mon, 16 Nov 2026 06:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <guid isPermaLink="false">test0004</guid>
+      <link>https://www.nt.se/kultur/scen/artikel/teatern-presenterar-varens-program/test0004</link>
+      <title>Teatern presenterar vårens program</title>
+      <description>&lt;p&gt;Fem nya uppsättningar.&lt;/p&gt;</description>
+      <pubDate>Mon, 16 Nov 2026 05:45:00 +0100</pubDate>
+    </item>
+    <item>
+      <guid isPermaLink="false">test0005</guid>
+      <link>https://www.nt.se/bostad/fastighetsaffarer/artikel/ny-agare-till-hus-i-norrkoping/test0005</link>
+      <title>Ny ägare till hus i Norrköping</title>
+      <description>En villa i Norrköping har bytt ägare.</description>
+      <pubDate>Mon, 16 Nov 2026 05:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <guid isPermaLink="false">test0005</guid>
+      <link>https://www.nt.se/bostad/fastighetsaffarer/artikel/ny-agare-till-hus-i-norrkoping/test0005</link>
+      <title>Ny ägare till hus i Norrköping</title>
+      <description>En villa i Norrköping har bytt ägare.</description>
+      <pubDate>Mon, 16 Nov 2026 05:00:00 +0100</pubDate>
+    </item>
+  </channel>
+</rss>

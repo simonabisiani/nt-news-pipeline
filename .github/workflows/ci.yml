@@ -1,0 +1,41 @@
+# Runs on every pull request: builds and tests the whole project on DuckDB
+# with synthetic fixtures, so no Snowflake credentials are needed.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  dbt-build:
+    runs-on: ubuntu-latest
+    env:
+      DBT_PROFILES_DIR: .
+      DBT_TARGET: dev
+      DUCKDB_PATH: ci.duckdb
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install "dbt-core>=1.10,<2.0" "dbt-duckdb>=1.10,<2.0" duckdb
+
+      - name: Load fixture data
+        run: bash scripts/load_fixtures.sh
+
+      - name: dbt build (seeds, models, snapshots, tests)
+        run: dbt build
+
+      - name: Generate documentation
+        run: dbt docs generate --static
+
+      - name: Upload docs
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbt-docs
+          path: target/static_index.html

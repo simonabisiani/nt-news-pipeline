@@ -1,0 +1,11 @@
+section,subsection,section_label,content_type,municipality_code
+nyheter,norrkoping,Nyheter Norrköping,editorial,0581
+nyheter,finspang,Nyheter Finspång,editorial,0562
+nyheter,soderkoping,Nyheter Söderköping,editorial,0582
+nyheter,valdemarsvik,Nyheter Valdemarsvik,editorial,0563
+nyheter,linkoping,Nyheter Linköping,editorial,0580
+nyheter,ostergotland,Nyheter Östergötland,editorial,
+nyheter,eksund,Nyheter Eksund,editorial,
+nyheter,ishockey,Ishockey,editorial,
+bostad,fastighetsaffarer,Fastighetsaffärer,automated,
+naringsliv,nyetableringar,Nyetableringar,automated,

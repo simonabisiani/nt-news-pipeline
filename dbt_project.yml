@@ -1,0 +1,38 @@
+name: nt_news
+version: "1.0.0"
+config-version: 2
+profile: nt_news
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  # Display timezone for business-facing dates. All stored timestamps are UTC.
+  reporting_timezone: "Europe/Stockholm"
+
+models:
+  nt_news:
+    staging:
+      +schema: staging
+      +materialized: view
+    intermediate:
+      +schema: intermediate
+      +materialized: view
+    marts:
+      +schema: marts
+      +materialized: table
+
+seeds:
+  nt_news:
+    +schema: staging
+    sections:
+      +column_types:
+        municipality_code: varchar
+    ostergotland_municipalities:
+      +column_types:
+        municipality_code: varchar

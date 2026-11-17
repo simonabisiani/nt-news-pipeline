@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_nt__feed_items
+    description: Cleaned feed items. One row per article per loader run.
+    columns:
+      - name: feed_item_id
+        description: Surrogate key (batch_id + article_id).
+        data_tests: [unique, not_null]
+      - name: article_id
+        data_tests: [not_null]
+      - name: published_at
+        description: Publication time in UTC, parsed from pub_date_raw.
+        data_tests:
+          - not_null:
+              config: {severity: warn}
+      - name: section_key
+        description: section/subsection taken from the article URL.

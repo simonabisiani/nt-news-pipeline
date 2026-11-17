@@ -1,0 +1,16 @@
+version: 2
+
+seeds:
+  - name: sections
+    description: Curated mapping of feed URL sections to labels, content type and municipality.
+    columns:
+      - name: content_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [editorial, automated]
+  - name: ostergotland_municipalities
+    description: The 13 municipalities in Östergötland county with official municipality codes.
+    columns:
+      - name: municipality_code
+        data_tests: [unique, not_null]

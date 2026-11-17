@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Synthetic test data: headline edited (test0001), new item (test0006), missing pubDate (test0007) -->
+<rss version="2.0">
+  <channel>
+    <title>Lokalt</title>
+    <link>https://www.nt.se/</link>
+    <description />
+    <item>
+      <guid isPermaLink="false">test0006</guid>
+      <link>https://www.nt.se/nyheter/valdemarsvik/artikel/hamnen-rustas-infor-sommaren/test0006</link>
+      <title>Hamnen rustas inför sommaren</title>
+      <description>&lt;p&gt;Nya bryggor ska vara på plats i maj.&lt;/p&gt;</description>
+      <pubDate>Mon, 16 Nov 2026 10:40:00 +0100</pubDate>
+    </item>
+    <item>
+      <guid isPermaLink="false">test0001</guid>
+      <link>https://www.nt.se/nyheter/norrkoping/artikel/ny-cykelbana-planeras-langs-strommen/test0001</link>
+      <title>Klart: Cykelbanan längs Strömmen byggs 2027</title>
+      <description>&lt;p&gt;Kommunen vill bygga en ny cykelbana&amp;nbsp;längs Motala ström.&lt;/p&gt;</description>
+      <pubDate>Mon, 16 Nov 2026 08:30:00 +0100</pubDate>
+    </item>
+    <item>
+      <guid isPermaLink="false">test0002</guid>
+      <link>https://www.nt.se/nyheter/finspang/artikel/skolan-far-ny-idrottshall/test0002</link>
+      <title>Skolan får ny idrottshall</title>
+      <description>&lt;p&gt;Bygget beräknas vara klart nästa höst.&lt;/p&gt;</description>
+      <pubDate>Mon, 16 Nov 2026 07:15:00 +0100</pubDate>
+    </item>
+    <item>
+      <guid isPermaLink="false">test0007</guid>
+      <link>https://www.nt.se/nyheter/ostergotland/artikel/vagarbete-pa-e4/test0007</link>
+      <title>Vägarbete på E4 under helgen</title>
+      <description>Räkna med köer söder om Norrköping.</description>
+    </item>
+  </channel>
+</rss>

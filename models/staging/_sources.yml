@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Append-only output of loader/load_feed.py. One row per feed item per fetch.
+    schema: "{{ env_var('RAW_SCHEMA', 'raw') }}"
+    tables:
+      - name: nt_feed_items
+        description: Raw items from the Norrköpings Tidningar "Lokalt" RSS feed (https://www.nt.se/rss/lokalt).
+        config:
+          loaded_at_field: fetched_at
+          # The loader runs every 2 hours. Warn if a run is missed, error if collection has stopped.
+          freshness:
+            warn_after: {count: 6, period: hour}
+            error_after: {count: 24, period: hour}
+        columns:
+          - name: batch_id
+            description: One UUID per loader run.
+            data_tests: [not_null]
+          - name: fetched_at
+            description: When the loader fetched the feed (UTC).
+            data_tests: [not_null]
+          - name: guid
+            description: Article ID assigned by NT. Stable across fetches.
+            data_tests:
+              - not_null:
+                  config: {severity: warn}
+          - name: link
+          - name: title
+          - name: description
+            description: Intro text, may contain HTML.
+          - name: pub_date_raw
+            description: Publication time as an RFC 822 string.
