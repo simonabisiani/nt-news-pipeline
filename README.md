@@ -1,5 +1,7 @@
 # NT News Pipeline
 
+[![CI](https://github.com/simonabisiani/nt-news-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/simonabisiani/nt-news-pipeline/actions/workflows/ci.yml)
+
 An ELT pipeline that collects the local news feed from Norrköpings Tidningar ([nt.se/rss/lokalt](https://www.nt.se/rss/lokalt)) every two hours, loads it into Snowflake and models it with dbt into tested, documented tables for analysis.
 
 It answers questions such as:
